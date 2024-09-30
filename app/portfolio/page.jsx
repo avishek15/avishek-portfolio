@@ -8,7 +8,7 @@ const PortfolioPage = () => {
       className="h-full"
       initial={{ y: "-200vh" }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.3 }}
     >
       <div>Portfolio</div>
     </motion.div>

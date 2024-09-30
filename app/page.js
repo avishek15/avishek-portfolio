@@ -9,7 +9,7 @@ export default function Home() {
       className="h-full overflow-y-clip overflow-x-clip"
       initial={{ y: "-200vh" }}
       animate={{ y: "0%" }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.3 }}
     >
       {/* <div className="h-full"> */}
       <HeroBanner />

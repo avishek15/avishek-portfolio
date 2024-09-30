@@ -24,14 +24,14 @@ const TransitionProvider = ({ children }) => {
           initial={{ opacity: 1, zIndex: 40 }}
           animate={{ opacity: 0, display: "none" }}
           exit={{ opacity: 0, display: "none" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "anticipate" }}
         >
           {pathName.substring(1) ? pathName.substring(1) : "home"}
         </motion.div>
         <motion.div
           className="h-screen w-screen fixed bg-black rounded-t-3xl bottom-0 z-30"
           initial={{ height: "140vh" }}
-          animate={{ height: "0vh", transition: { delay: 0.5 } }}
+          animate={{ height: "0vh", transition: { delay: 0.1 } }}
         />
         <div className="h-24 ">
           <Navbar />

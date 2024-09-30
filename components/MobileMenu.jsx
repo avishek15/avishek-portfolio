@@ -49,11 +49,11 @@ const MobileMenu = ({ menu_items }) => {
   const listVariant = {
     closed: {
       x: "100vw",
-      transition: { duration: 0.3, ease: "easeOut" }, // Ease out for exit animation
+      transition: { duration: 0.1, ease: "easeOut" }, // Ease out for exit animation
     },
     opened: {
       x: 0,
-      transition: { when: "beforeChildren", staggerChildren: 0.5 },
+      transition: { when: "beforeChildren", staggerChildren: 0.1 },
     },
   };
   const listItemVariants = {
