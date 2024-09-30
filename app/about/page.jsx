@@ -1,8 +1,19 @@
 "use client";
-import { motion } from "framer-motion";
+import Brain from "@/components/brain";
+import { motion, useInView, useScroll } from "framer-motion";
 import React from "react";
+import { useRef } from "react";
 
 const AboutPage = () => {
+  const containerRef = useRef();
+  const { scrollYProgress } = useScroll({ container: containerRef });
+
+  const skillRef = useRef();
+  const isSkillRefInView = useInView(skillRef, { margin: "-100px" });
+
+  const xpRef = useRef();
+  const isXpRefInView = useInView(xpRef, { margin: "-100px" });
+
   const skillList = [
     // Programming Languages
     "Python",
@@ -97,49 +108,75 @@ const AboutPage = () => {
 
   const jobList = [
     {
-      title: "Software Engineer",
-      desc: "As a software engnineer, I was working well in Singapore.",
-      dates: "2013-2014",
-      company: "Works Applications Pte Ltd",
+      title: "Senior Data Scientist",
+      desc: "As a Senior Data Scientist at Xccelerate Global HK Ltd, I am responsible for leading data science initiatives and training teams in AI and Machine Learning.",
+      dates: "Apr 2023 - Present",
+      company: "Xccelerate Global HK Ltd",
     },
     {
       title: "Senior Data Scientist",
-      desc: "As a software engnineer, I was working well in Singapore.",
-      dates: "2018-2019",
+      desc: "At Arrano Capital, I spearheaded the development of a k-NN based filtering technique for high-quality trade signals, significantly outperforming market benchmarks.",
+      dates: "Apr 2022 – Dec 2022",
+      company: "Arrano Capital",
+    },
+    {
+      title: "Data Scientist",
+      desc: "At Marubeni Power Asset Management, I developed predictive maintenance models for power plants that resulted in significant savings and improved operational efficiency.",
+      dates: "Nov 2019 – Mar 2022",
+      company: "Marubeni Power Asset Management",
+    },
+    {
+      title: "Computer Vision Engineer",
+      desc: "At Sizzle.gg, I created automated video highlights for e-sports using computer vision techniques to identify key moments.",
+      dates: "Aug 2019 – Nov 2019",
+      company: "Sizzle.gg",
+    },
+    {
+      title: "Senior Deep Learning Engineer",
+      desc: "At Pikup.ai, I implemented an automated storefront system using computer vision for real-time customer tracking and billing.",
+      dates: "Jun 2018 – Jul 2019",
       company: "Pikup.ai",
     },
   ];
 
   return (
     <motion.div
-      className="h-full overflow-scroll"
+      className="h-full overflow-x-clip"
       initial={{ y: "-200vh" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8 }}
     >
       {/* CONTAINER */}
-      <div className="">
+      <div className="h-full overflow-y-scroll lg:flex" ref={containerRef}>
         {/* TEXT CONTAINER */}
-        <div className="p-4 sm:p-8 md:p-12 lg:p-20 xl:p-48 flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64">
+        <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 xl:w-1/2">
           {/* BIOGRAPHY CONTAINER */}
           <div className="flex flex-col gap-12 justify-center">
             <h1 className="font-bold text-2xl">BIOGRAPHY</h1>
             <p className="text-lg text-justify lg:text-xl ">
               In an era where technology shapes innovation, I bring a unique
               blend of creativity and technical expertise to every project. With
-              a strong background in data science and full-stack development, I
-              excel at transforming abstract ideas into practical solutions.
+              a strong background in{" "}
+              <span className="font-bold italic">data science</span> and{" "}
+              <span className="font-bold italic">full-stack</span> development,
+              I excel at transforming abstract ideas into practical solutions.
               From developing intelligent algorithms that optimize operations to
               creating seamless web applications, my passion for technology
               drives me to impact businesses and communities positively.{" "}
             </p>
             <p className="text-lg text-justify lg:text-xl ">
               Choose me for your next project and benefit from my diverse skill
-              set, including advanced machine learning techniques and modern
-              frameworks like React and Next.js. I thrive on challenges and
-              adapt quickly to evolving technologies, ensuring cutting-edge
-              solutions that engage users and deliver results. Let’s collaborate
-              to bring your vision to life and exceed your expectations.
+              set, including{" "}
+              <span className="font-bold italic">
+                advanced machine learning techniques
+              </span>{" "}
+              and modern frameworks like{" "}
+              <span className="font-bold italic">React</span> and{" "}
+              <span className="font-bold italic">Next.js</span>. I thrive on
+              challenges and adapt quickly to evolving technologies, ensuring
+              cutting-edge solutions that engage users and deliver results.
+              Let&apos;s collaborate to bring your vision to life and exceed
+              your expectations.
             </p>
             {/* SIGN */}
             <div className="self-end"></div>
@@ -166,20 +203,32 @@ const AboutPage = () => {
           </div>
 
           {/* SKILLS CONTAINER */}
-          <div className="flex flex-col gap-12 justify-center">
-            <h1 className="font-bold text-2xl">SKILLS</h1>
+          <div className="flex flex-col gap-12 justify-center" ref={skillRef}>
+            <motion.h1
+              className="font-bold text-2xl"
+              initial={{ x: "-300px" }}
+              animate={isSkillRefInView ? { x: 0 } : {}}
+              transition={{ delay: 0.2 }}
+            >
+              SKILLS
+            </motion.h1>
 
             {/* SKILL LIST */}
-            <div className="flex gap-4 flex-wrap">
+            <motion.div
+              className="flex gap-4 flex-wrap justify-content-between"
+              initial={{ x: "-2900px" }}
+              animate={isSkillRefInView ? { x: 0 } : {}}
+              transition={{ delay: 0.5 }}
+            >
               {skillList.map((skill) => (
                 <div
                   key={skill}
-                  className="rounded p-1 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black"
+                  className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black border border-gray-300"
                 >
                   {skill}
                 </div>
               ))}
-            </div>
+            </motion.div>
             {/* SCROLL SVG */}
             <svg
               viewBox="0 0 24 24"
@@ -202,56 +251,78 @@ const AboutPage = () => {
             </svg>
           </div>
           {/* EXPERIENCE CONTAINER */}
-          <div className="flex flex-col gap-12 justify-center">
-            <h1 className="font-bold text-2xl">EXPERIENCE</h1>
+          <div
+            className="flex flex-col gap-0 justify-center mb-6 pb-6"
+            ref={xpRef}
+          >
+            <motion.h1
+              className="font-bold text-2xl mb-12"
+              initial={{ x: "-300px" }}
+              animate={isXpRefInView ? { x: 0 } : {}}
+              transition={{ delay: 0.2 }}
+            >
+              EXPERIENCE
+            </motion.h1>
             {/* EXPERIENCE LIST */}
             {/* <div className="h-full"> */}
             {jobList.map((job, index) => (
               <div key={index}>
                 {index % 2 === 0 ? (
-                  <div className="flex justify-between h-48">
+                  <div className="flex justify-between h-64">
                     {/* LEFT */}
-                    <div className="w-1/3 h-48">
+                    <div className="w-2/5 h-64">
                       {/* TITLE, DESC, DATE, COMPANY */}
-                      <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                      <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg text-center">
                         {job.title}
                       </div>
-                      <div className="p-3 text-sm italic">{job.desc}</div>
+                      <div className="p-3 text-sm italic text-justify">
+                        {job.desc}
+                      </div>
                       <div className="p-3 text-red-400 text-sm font-semibold">
                         {job.dates}
                       </div>
-                      <div className="p-1 rounded bg-white text-sm font-semibold">
+                      <div className="p-2 rounded bg-black text-white text-sm font-semibold w-fit">
                         {job.company}
                       </div>
                     </div>
                     {/* CENTER */}
                     {/* LINE AND CIRCLE */}
-                    <div className="w-1/6 h-48">
-                      <div></div>
+                    <div className="flex w-1/12 h-64 justify-center">
+                      <div className="w-1 h-full bg-gray-600 rounded relative">
+                        <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2">
+                          {" "}
+                        </div>
+                      </div>
                     </div>
                     {/* RIGHT */}
-                    <div className="w-1/3 h-48"></div>
+                    <div className="w-2/5 h-64"></div>
                   </div>
                 ) : (
-                  <div>
+                  <div className="flex justify-between h-64">
                     {/* LEFT */}
-                    <div className="w-1/3 h-48"></div>
+                    <div className="w-2/5 h-64"></div>
                     {/* CENTER */}
                     {/* LINE AND CIRCLE */}
-                    <div className="w-1/6 h-48">
-                      <div></div>
+                    <div className="flex w-1/12 h-64 justify-center">
+                      <div className="w-1 h-full bg-gray-600 rounded relative">
+                        <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2">
+                          {" "}
+                        </div>
+                      </div>
                     </div>
                     {/* RIGHT */}
-                    <div className="w-1/3 h-48">
+                    <div className="w-2/5 h-64">
                       {/* TITLE, DESC, DATE, COMPANY */}
-                      <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                      <div className="bg-white p-3 font-semibold rounded-b-lg rounded-e-lg text-center">
                         {job.title}
                       </div>
-                      <div className="p-3 text-sm italic">{job.desc}</div>
+                      <div className="p-3 text-sm italic text-justify">
+                        {job.desc}
+                      </div>
                       <div className="p-3 text-red-400 text-sm font-semibold">
                         {job.dates}
                       </div>
-                      <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                      <div className="p-2 rounded bg-black text-white text-sm font-semibold w-fit">
                         {job.company}
                       </div>
                     </div>
@@ -264,7 +335,9 @@ const AboutPage = () => {
         </div>
 
         {/* SVG CONTAINER */}
-        <div className="hidden"></div>
+        <div className="hidden lg:block lg:w-1/3 xl:w-1/2 sticky top-0">
+          <Brain scrollYProgress={scrollYProgress} />
+        </div>
       </div>
     </motion.div>
   );

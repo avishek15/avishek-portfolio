@@ -12,7 +12,7 @@ const HeroBanner = () => {
 
       {/* TEXT CONTAINER */}
       <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-3 md:gap-4 lg:gap-8 items-center justify-center">
-        <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight">
           Transforming Data for a Brighter Tomorrow
         </h1>
         {/* <p className="text-justify md:text-lg xl:text-xl tracking-tight">

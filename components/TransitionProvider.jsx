@@ -21,9 +21,9 @@ const TransitionProvider = ({ children }) => {
         />
         <motion.div
           className="fixed m-auto top-0 bottom-0 left-0 right-0 text-white text-8xl font-bold cursor-default z-40 w-fit h-fit"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 1, zIndex: 40 }}
+          animate={{ opacity: 0, display: "none" }}
+          exit={{ opacity: 0, display: "none" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {pathName.substring(1) ? pathName.substring(1) : "home"}
@@ -33,7 +33,7 @@ const TransitionProvider = ({ children }) => {
           initial={{ height: "140vh" }}
           animate={{ height: "0vh", transition: { delay: 0.5 } }}
         />
-        <div className="h-24">
+        <div className="h-24 ">
           <Navbar />
         </div>
         <div className="h-[calc(100vh-6rem)]">{children}</div>

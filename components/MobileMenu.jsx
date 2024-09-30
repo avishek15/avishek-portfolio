@@ -1,9 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { FiAlignJustify } from "react-icons/fi";
-import { MdClose } from "react-icons/md";
+// import { FiAlignJustify } from "react-icons/fi";
+// import { MdClose } from "react-icons/md";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import LinkedIn from "@/public/linkedin.png";
+import Github from "@/public/github.png";
 
 const MobileMenu = ({ menu_items }) => {
   const [isOpen, setIsopen] = useState(false);
@@ -105,6 +108,22 @@ const MobileMenu = ({ menu_items }) => {
               <Link href={link.url}>{link.title}</Link>
             </motion.div>
           ))}
+          <motion.div variants={listItemVariants} className="z-50 flex gap-12">
+            <Link
+              href="https://www.linkedin.com/in/avishekmajumder/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image src={LinkedIn} alt="Linked In" width={32} />
+            </Link>
+            <Link
+              href="https://github.com/avishek15"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image src={Github} alt="Github" width={32} className="invert" />
+            </Link>
+          </motion.div>
         </motion.div>
       )}
     </>
