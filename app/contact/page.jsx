@@ -1,19 +1,18 @@
 "use client";
-
-import HeroBanner from "@/components/Hero";
+import React from "react";
 import { motion } from "framer-motion";
 
-export default function Home() {
+const ContactPage = () => {
   return (
     <motion.div
       className="h-full"
       initial={{ y: "-200vh" }}
-      animate={{ y: "0%" }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      {/* <div className="h-full"> */}
-      <HeroBanner />
-      {/* </div> */}
+      <div>Contact</div>
     </motion.div>
   );
-}
+};
+
+export default ContactPage;

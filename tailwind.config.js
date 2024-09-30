@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        // My custom Colors
+        darkCoffeeStain: "#e3ded3",
+        lightCoffeeStain: "#fcfaeb",
       },
     },
   },
